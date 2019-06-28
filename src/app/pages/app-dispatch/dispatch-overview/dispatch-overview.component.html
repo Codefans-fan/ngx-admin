@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <div class="flex-centered col-md-12">
+          <ngx-datatable class="cosmic"
+                         (activate)="onActivate($event)"
+                         [columnMode]="'flex'"
+                         [headerHeight]="40"
+                         [footerHeight]="50"
+                         [rowHeight]="'auto'"
+                         [rows]="rows">
+            <ngx-datatable-column name="App name" prop="appName" [flexGrow]="1">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="App type" prop="appType" [flexGrow]="1">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{appTypes[value]}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="App bundle" prop="appBundle" [flexGrow]="2">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="App version" prop="appVersion" [flexGrow]="1">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Download count " prop="downloadCount" [flexGrow]="1" [summaryFunc]="downlaodSummary">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

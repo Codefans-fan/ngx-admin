@@ -18,8 +18,8 @@ const routes: Routes = [{
     path: 'modal-overlays',
     loadChildren: './modal-overlays/modal-overlays.module#ModalOverlaysModule',
   }, {
-    path: 'extra-components',
-    loadChildren: './extra-components/extra-components.module#ExtraComponentsModule',
+    path: 'appdispatch',
+    loadChildren: './app-dispatch/app-dispatch.module#AppDispatchModule',
   }, {
     path: 'bootstrap',
     loadChildren: './bootstrap/bootstrap.module#BootstrapModule',

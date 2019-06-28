@@ -9,7 +9,7 @@ export class User {
 }
 
 
-export class UserCount{
-  totalCount?:number;
-  todaysRegister?:number;
+export class UserCount {
+  totalCount?: number;
+  todaysRegister?: number;
 }

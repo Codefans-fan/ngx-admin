@@ -18,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AuthGuard} from './auth-guard.service';
-import {TokenInterceptor} from "./@core/interceptor/token.interceptor";
+import {TokenInterceptor} from './@core/interceptor/token.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -42,7 +42,7 @@ import {TokenInterceptor} from "./@core/interceptor/token.interceptor";
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
     AuthGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
 })
 export class AppModule {
