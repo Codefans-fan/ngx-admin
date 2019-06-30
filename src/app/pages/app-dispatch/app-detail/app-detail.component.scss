@@ -1,0 +1,38 @@
+:host {
+   .app-icon {
+      max-width: 100px;
+
+   }
+
+  .detail-head {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #666666;
+    border-radius: 5px;
+  }
+
+  .header-buttons {
+     text-align: center;
+  }
+  .head-button {
+    margin: 10px;
+    min-width: 80%;
+  }
+
+  .head-button button {
+    text-transform:none;
+  }
+
+  .upload_input {
+    display: none;
+  }
+
+  .version-row {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .version-row span {
+    padding-right: 10px;
+  }
+}

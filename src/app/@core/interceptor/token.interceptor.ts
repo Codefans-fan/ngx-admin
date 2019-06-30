@@ -17,11 +17,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    req = (req as HttpRequest<any>).clone({
-      setHeaders: {
-        'Content-Type': 'application/json',
-      },
-    });
+    if (req.url.indexOf('appdispatch/newversion') === -1) {
+      // upload file, do not set content type
+      req = (req as HttpRequest<any>).clone({
+        setHeaders: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
 
     if (req.url.indexOf('/assets/i18n') > 0) {
       return next.handle(req);

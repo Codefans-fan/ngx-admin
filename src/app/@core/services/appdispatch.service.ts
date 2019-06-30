@@ -26,4 +26,12 @@ export class AppdispatchService {
   }
 
 
+  public getAppDetails(id: number): Observable<AppdispatchModel> {
+    const param: any = {'id': id};
+    return this.httpClient.get('/api/appdispatch/details', {params: param});
+
+
+  }
+
+
 }

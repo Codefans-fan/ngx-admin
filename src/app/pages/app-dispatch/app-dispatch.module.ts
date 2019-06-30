@@ -9,6 +9,7 @@ import { AppDispatchComponent } from './app-dispatch.component';
 import { DispatchOverviewComponent } from './dispatch-overview/dispatch-overview.component';
 import {AppdispatchService} from '../../@core/services/appdispatch.service';
 import {AppDetailComponent} from './app-detail/app-detail.component';
+import {UploadService} from '../../@core/services/upload.service';
 
 const COMPONENTS = [
   AppDispatchComponent,
@@ -18,6 +19,7 @@ const COMPONENTS = [
 
 const SERVICES = [
   AppdispatchService,
+  UploadService,
 ];
 
 const MODULES = [
