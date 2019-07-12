@@ -1,0 +1,89 @@
+:host ::ng-deep {
+  .layout-container {
+    background-color: white;
+  }
+
+  nb-layout .layout .layout-container .content .columns nb-layout-column {
+    padding: 0;
+  }
+
+  .pattern {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    max-width: 312px;
+    width: 21.66%;
+    transition: all 0.5s;
+  }
+
+  .pattern.left {
+    left: 0;
+  }
+
+  .pattern.right {
+    right: 0;
+  }
+
+  .pattern img {
+    width: 100%;
+    transition: all 1s;
+    pointer-events: none;
+  }
+
+  .container-fluid {
+    transition: all 0.5s;
+  }
+
+  .container-fluid .qrcode {
+    margin-top: 15%;
+  }
+
+  .title-row {
+    font-size: large;
+    color: black;
+    margin-top: 20px;
+  }
+
+  .title-row .app-title {
+    padding-left: 15px;
+  }
+
+  .title-row .app-download {
+    padding: 12px 46px;
+    border: 1px solid #32b2a7;
+    border-radius: 40px;
+    font-size: 14px;
+    background: #32b2a7;
+    color: #fff;
+    cursor: pointer;
+  }
+
+
+  @media only screen and (max-width: 768px) {
+
+    .title-row {
+      font-size: large;
+      color: black;
+      margin-top: 40px;
+    }
+
+    .title-row .app-title {
+      padding-left: 15px;
+    }
+
+    .title-row .app-download {
+      padding: 12px 46px;
+      border: 1px solid #32b2a7;
+      border-radius: 40px;
+      font-size: 14px;
+      background: #32b2a7;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .container-fluid .qrcode > qrcode {
+      display: none;
+    }
+  }
+
+}

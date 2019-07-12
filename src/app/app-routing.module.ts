@@ -10,6 +10,8 @@ import {
 } from '@nebular/auth';
 import {AuthGuard} from './auth-guard.service';
 
+import {AppViewComponent} from './public/app-view/app-view.component';
+
 const routes: Routes = [
   { path: 'pages',
     canActivate: [AuthGuard],
@@ -43,6 +45,10 @@ const routes: Routes = [
         component: NbResetPasswordComponent,
       },
     ],
+  },
+  {
+    path: 'view/:appid',
+    component: AppViewComponent,
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },

@@ -1,0 +1,31 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="pattern left">
+      <img src="assets/images/download_pattern_left.png">
+    </div>
+    <div class="pattern right">
+      <img src="assets/images/download_pattern_right.png">
+    </div>
+    <div class="container-fluid">
+      <div class="main">
+        <div class="row justify-content-center ">
+           <div class="qrcode">
+             <qrcode [qrdata]="qrData" [size]="256" [level]="'M'" [allowEmptyString]="true"></qrcode>
+           </div>
+          </div>
+        <div class="row justify-content-center title-row">
+
+          <i class="{{iconClass}}"></i>
+          <span class="app-title">
+            99Coin
+          </span>
+        </div>
+        <div class="row justify-content-center title-row">
+          <button class="app-download" (click)="download(appId)">DownLoad</button>
+        </div>
+      </div>
+    </div>
+  </nb-layout-column>
+</nb-layout>
+
+

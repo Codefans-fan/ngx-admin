@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {AppdispatchService} from '../../../@core/services/appdispatch.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UploadResult, UploadService} from '../../../@core/services/upload.service';
+import {NbToastStatus} from '@nebular/theme/components/toastr/model';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-dispatch-overview',
@@ -13,15 +16,10 @@ export class DispatchOverviewComponent {
 
   private appTypes = [];
 
-  constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute) {
+  constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute,
+              private uploadService: UploadService, private toastrService: NbToastrService) {
 
-    appdispatchService.getAppTypes().subscribe(res => {
-      this.appTypes = res;
-    });
-
-    appdispatchService.getAppList().subscribe(res => {
-      this.rows = res;
-    });
+    this.loadData();
   }
 
   private downlaodSummary(cells: number[]): number {
@@ -29,6 +27,23 @@ export class DispatchOverviewComponent {
     return filteredCells.reduce((sum, cell) => sum += cell, 0);
   }
 
+  private loadData() {
+    this.appdispatchService.getAppTypes().subscribe(res => {
+      this.appTypes = res;
+    });
+
+    this.appdispatchService.getAppList().subscribe(res => {
+      this.rows = res;
+    });
+  }
+
+  public uploadFile(files: File[]): void {
+    this.uploadService.uploadFile(files[0], 0,
+      '/api/appdispatch/uploadapp').subscribe((res: UploadResult) => {
+      this.showToast(NbToastStatus.SUCCESS, 'Success', 'pload success');
+      this.loadData();
+    });
+  }
 
   onActivate($event) {
     // double click
@@ -37,4 +52,21 @@ export class DispatchOverviewComponent {
     }
 
   }
+
+  private showToast(type: NbToastStatus, title: string, body: string) {
+    const config = {
+      status: type,
+      destroyByClick: true,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.TOP_RIGHT,
+      preventDuplicates: false,
+    };
+    const titleContent = title ? `${title}` : '';
+    this.toastrService.show(
+      body,
+      titleContent,
+      config);
+  }
+
 }

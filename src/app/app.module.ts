@@ -19,13 +19,17 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AuthGuard} from './auth-guard.service';
 import {TokenInterceptor} from './@core/interceptor/token.interceptor';
+import {AppViewComponent} from './public/app-view/app-view.component';
+import {QRCodeModule} from 'angularx-qrcode';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppViewComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    QRCodeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -37,6 +41,7 @@ import {TokenInterceptor} from './@core/interceptor/token.interceptor';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    DeviceDetectorModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [

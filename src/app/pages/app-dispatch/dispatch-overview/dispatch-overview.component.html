@@ -1,6 +1,21 @@
 <div class="row">
   <div class="col-md-12">
     <nb-card>
+      <nb-card-header>
+        <div class="head-button col-md-12">
+          <button type="button" class="btn btn-primary btn-with-icon" (click)="fileInput.click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>New Version</span>
+          </button>
+          <input
+            #fileInput
+            type="file"
+            [multiple]="false"
+            class="upload_input"
+            (change)="uploadFile( fileInput.files ) ; fileInput.value = null;"
+          />
+        </div>
+      </nb-card-header>
       <nb-card-body>
         <div class="flex-centered col-md-12">
           <ngx-datatable class="cosmic"

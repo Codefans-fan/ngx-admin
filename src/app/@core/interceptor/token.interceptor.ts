@@ -16,8 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    if (req.url.indexOf('appdispatch/newversion') === -1) {
+    if (!(req.url.indexOf('appdispatch/newversion') !== -1 || req.url.indexOf('appdispatch/uploadapp') !== -1)) {
       // upload file, do not set content type
       req = (req as HttpRequest<any>).clone({
         setHeaders: {
@@ -37,11 +36,14 @@ export class TokenInterceptor implements HttpInterceptor {
         return throwError({'code': 102, 'message': 'authentication error'});
       }
       return this.auth.getToken().pipe(flatMap((value: NbAuthJWTToken) => {
-        req = (req as HttpRequest<any>).clone({
-          setHeaders: {
-            Authorization: value.getValue(),
-          },
-        });
+        if (value != null && value.getValue() &&  value.isValid()) {
+          req = (req as HttpRequest<any>).clone({
+            setHeaders: {
+              Authorization: value.getValue(),
+            },
+          });
+        }
+
         return next.handle(req);
       }));
     }
