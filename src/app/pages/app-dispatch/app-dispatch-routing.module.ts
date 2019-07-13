@@ -16,6 +16,11 @@ const routes: Routes = [{
       path: 'detail/:id',
       component: AppDetailComponent,
     },
+    {
+      path: '',
+      redirectTo: 'overview',
+      pathMatch: 'full',
+    },
   ],
 }];
 

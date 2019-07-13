@@ -20,11 +20,11 @@ import {HttpResponse} from '@angular/common/http';
 
 export class AppDetailComponent implements OnInit {
 
-  private id: number = 0;
+  id: number = 0;
 
-  private app: AppdispatchModel = {};
+  app: AppdispatchModel = {};
 
-  private appTypes = [];
+  appTypes = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private appdispatchService: AppdispatchService,
               private uploadService: UploadService, private toastrService: NbToastrService) {
@@ -55,7 +55,7 @@ export class AppDetailComponent implements OnInit {
     });
   }
 
-  private downLoad(appid: string): void {
+  downLoad(appid: string): void {
     this.appdispatchService.downLoadFile(appid).subscribe((downloadurl: string) => {
       if (downloadurl.length < 4) {
         this.showToast(NbToastStatus.DANGER, 'Failed', 'Download Failed');
@@ -66,7 +66,7 @@ export class AppDetailComponent implements OnInit {
     });
   }
 
-  private preview(appId): void {
+  preview(appId): void {
     window.open(`#/view/${appId}`, '_blank');
   }
 

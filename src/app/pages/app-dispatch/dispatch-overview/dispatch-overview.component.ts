@@ -12,9 +12,9 @@ import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 })
 export class DispatchOverviewComponent {
 
-  private rows = [];
+  rows = [];
 
-  private appTypes = [];
+  appTypes = [];
 
   constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute,
               private uploadService: UploadService, private toastrService: NbToastrService) {
@@ -22,7 +22,7 @@ export class DispatchOverviewComponent {
     this.loadData();
   }
 
-  private downlaodSummary(cells: number[]): number {
+  downlaodSummary(cells: number[]): number {
     const filteredCells = cells.filter(cell => !!cell);
     return filteredCells.reduce((sum, cell) => sum += cell, 0);
   }
@@ -37,7 +37,7 @@ export class DispatchOverviewComponent {
     });
   }
 
-  public uploadFile(files: File[]): void {
+  uploadFile(files: File[]): void {
     this.uploadService.uploadFile(files[0], 0,
       '/api/appdispatch/uploadapp').subscribe((res: UploadResult) => {
       this.showToast(NbToastStatus.SUCCESS, 'Success', 'pload success');

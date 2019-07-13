@@ -9,10 +9,10 @@
     <div class="container-fluid">
       <div class="main">
         <div class="row justify-content-center ">
-           <div class="qrcode">
-             <qrcode [qrdata]="qrData" [size]="256" [level]="'M'" [allowEmptyString]="true"></qrcode>
-           </div>
+          <div class="qrcode">
+            <qrcode [qrdata]="qrData" [size]="256" [level]="'M'" [allowEmptyString]="true"></qrcode>
           </div>
+        </div>
         <div class="row justify-content-center title-row">
 
           <i class="{{iconClass}}"></i>
@@ -20,8 +20,8 @@
             99Coin
           </span>
         </div>
-        <div class="row justify-content-center title-row">
-          <button class="app-download" (click)="download(appId)">DownLoad</button>
+        <div class="row justify-content-center title-row" [hidden]="hideDownLoadButton">
+          <button class="app-download" (click)="download(appId)">{{ 'appview.download' | translate }}</button>
         </div>
       </div>
     </div>
