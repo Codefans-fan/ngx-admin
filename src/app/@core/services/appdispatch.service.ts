@@ -38,6 +38,9 @@ export class AppdispatchService {
     return this.httpClient.get(`/api/appdispatch/app/${appid}`, {responseType: 'text'});
   }
 
+  public deleteApp(appid: number): Observable<any> {
+    return this.httpClient.delete(`/api/appdispatch/delete/${appid}`);
+  }
   /**
    * 准备下载文件, 生成下载地址  service-item,, http
    * @param appid
@@ -45,6 +48,7 @@ export class AppdispatchService {
   public preDownLoadFile(appid: string): Observable<string> {
     return this.httpClient.get(`/api/appdispatch/preapp/${appid}`, {responseType: 'text'});
   }
+
 
   public getFileNameFromContentDisposition(headers: HttpHeaders): string {
     const contentDisposition = headers.get('content-disposition') || '';

@@ -50,6 +50,15 @@
                 {{value}}
               </ng-template>
             </ngx-datatable-column>
+            <ngx-datatable-column name="Delete" [flexGrow]="1" [summaryFunc]="downlaodSummary">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <button  nbButton [size]="'small'" [status]="'info'" outline (click)="deleteApp(row)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  Delete
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+
           </ngx-datatable>
         </div>
       </nb-card-body>

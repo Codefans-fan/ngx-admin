@@ -3,8 +3,9 @@ import {AppdispatchService} from '../../../@core/services/appdispatch.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UploadResult, UploadService} from '../../../@core/services/upload.service';
 import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
-
+import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {AppdispatchModel} from '../../../@core/models/appdispatch.model';
+import {WarningDialogComponent} from '../warning-dialog/warning-dialog.component';
 @Component({
   selector: 'ngx-dispatch-overview',
   styleUrls: ['./dispatch-overview.component.scss'],
@@ -17,7 +18,8 @@ export class DispatchOverviewComponent {
   appTypes = [];
 
   constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute,
-              private uploadService: UploadService, private toastrService: NbToastrService) {
+              private uploadService: UploadService, private toastrService: NbToastrService,
+              private dialogService: NbDialogService) {
 
     this.loadData();
   }
@@ -50,6 +52,19 @@ export class DispatchOverviewComponent {
     if ($event.type === 'dblclick' || $event.type === 'keydown') {
       this.router.navigate(['../detail', $event.row.id], {relativeTo: this.route});
     }
+
+  }
+
+  deleteApp(rowData: AppdispatchModel) {
+    this.dialogService.open(WarningDialogComponent).onClose.subscribe((isSure: boolean) => {
+      if (isSure) {
+        this.appdispatchService.deleteApp(rowData.id).subscribe(() => {
+          this.showToast(NbToastStatus.SUCCESS, 'Delete', 'Delete successfully');
+          this.loadData();
+        });
+        return;
+      }
+    });
 
   }
 
