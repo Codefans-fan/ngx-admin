@@ -9,8 +9,7 @@ export interface AppVersion {
   version: number;
 
   appFile: string;
-
-
+  remark: string;
   createTime: Date;
 }
 
@@ -26,6 +25,6 @@ export class AppdispatchModel {
   appVersion?: string;
   version?: number;
   appFile?: string;
-
+  remark?: string;
   versionList?: Array<AppVersion>;
 }

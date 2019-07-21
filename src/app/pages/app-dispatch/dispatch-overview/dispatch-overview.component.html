@@ -35,7 +35,12 @@
                 {{appTypes[value]}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="App bundle" prop="appBundle" [flexGrow]="2">
+            <ngx-datatable-column name="App bundle" prop="appBundle" [flexGrow]="1">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Remark" prop="remark" [flexGrow]="1">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 {{value}}
               </ng-template>

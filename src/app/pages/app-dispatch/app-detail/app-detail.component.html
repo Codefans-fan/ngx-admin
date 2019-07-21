@@ -67,30 +67,48 @@
           </div>
         </div>
       </nb-card-header>
-      <nb-card-body>
-        <div class="row version-row">
-           Versions:
-        </div>
-        <div class="row version-row" *ngFor="let version of app.versionList">
-          <div class="col-md-2">
-            <span >Version :</span>
-            <span>{{version.version}}</span>
-          </div>
-          <div class="col-md-2">
-            <span >Download count :</span>
-            <span>
+        <nb-tabset >
+          <nb-tab  tabTitle="Preferece">
+              <div class="row form-group version-row ">
+                  <label for="remark" class="label col-sm-2 col-form-label">Remark</label>
+                  <div class="col-sm-9">
+                    <input type="text" nbInput fullWidth id="remark" placeholder="Remark"  [(ngModel)]="app.remark">
+                </div>
+              </div>
+              <div class="form-group row version-row">
+                <div class="col-sm-9">
+                  <button type="submit" nbButton class="primary" (click)="onSavePreference()">Save</button>
+                </div>
+              </div>
+          </nb-tab>
+          <nb-tab tabTitle="Versions">
+            <div *ngIf="app.versionList?.length > 0; else elseBlock ">
+
+              <div class="row version-row" *ngFor="let version of app.versionList">
+                <div class="col-md-2">
+                  <span >Version :</span>
+                  <span>{{version.version}}</span>
+                </div>
+                <div class="col-md-2">
+                  <span >Download count :</span>
+                  <span>
                {{version.downloadCount}}
-            </span>
-          </div>
-          <div class="col-md-8">
-            <span >Date:</span>
-            <span> {{version.createTime}}</span>
-          </div>
+                </span>
+                </div>
+                <div class="col-md-4">
+                  <span >Date:</span>
+                  <span> {{version.createTime}}</span>
+                </div>
+                <div class="col-md-4">
+                  <span >Remark:</span>
+                  <span> {{version.remark ? version.remark:'None'}}</span>
+                </div>
+              </div>
+            </div>
+            <ng-template #elseBlock> <div class="row version-row" >No Data</div></ng-template>
 
-
-        </div>
-      </nb-card-body>
-
+          </nb-tab>
+        </nb-tabset>
     </nb-card>
   </div>
 </div>

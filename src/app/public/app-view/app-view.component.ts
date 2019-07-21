@@ -6,6 +6,9 @@ import {Component, OnInit} from '@angular/core';
 import {AppdispatchService} from '../../@core/services/appdispatch.service';
 import {ActivatedRoute} from '@angular/router';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {NbToastStatus} from '@nebular/theme/components/toastr/model';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {AppdispatchModel} from '../../@core/models/appdispatch.model';
 
 @Component({
   selector: 'ngx-app-view',
@@ -23,8 +26,10 @@ export class AppViewComponent implements OnInit {
 
   hideDownLoadButton: boolean = false;
 
+  appName: string  = '';
+
   constructor(private route: ActivatedRoute, private appdispatchService: AppdispatchService,
-              private deviceService: DeviceDetectorService) {
+              private deviceService: DeviceDetectorService, private toastrService: NbToastrService) {
   }
 
   download(appId: string): void {
@@ -34,6 +39,11 @@ export class AppViewComponent implements OnInit {
         return;
       }
       window.location.href = res;
+    }, err => {
+      if (err.error.indexOf(109) > 0) {
+        this.showToast(NbToastStatus.DANGER, 'Error', 'Free time is using out');
+      }
+
     });
   }
 
@@ -43,8 +53,9 @@ export class AppViewComponent implements OnInit {
       if (this.appId) {
         this.qrData = window.location.protocol + '//' + window.location.host + '/#/view/' + this.appId;
 
-        this.appdispatchService.getAppType(this.appId).subscribe(res => {
-          switch (Number(res)) {
+        this.appdispatchService.getAppSimple(this.appId).subscribe((app: AppdispatchModel) => {
+          this.appName = app.appName;
+          switch (Number(app.appType)) {
             case 1:
               this.iconClass = 'fab fa-android';
               if (this.deviceService.getDeviceInfo().userAgent.toLowerCase().indexOf('iphone') > -1) {
@@ -63,9 +74,21 @@ export class AppViewComponent implements OnInit {
         });
       }
     });
-
-
   }
 
-
+  private showToast(type: NbToastStatus, title: string, body: string) {
+    const config = {
+      status: type,
+      destroyByClick: true,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.TOP_RIGHT,
+      preventDuplicates: false,
+    };
+    const titleContent = title ? `${title}` : '';
+    this.toastrService.show(
+      body,
+      titleContent,
+      config);
+  }
 }

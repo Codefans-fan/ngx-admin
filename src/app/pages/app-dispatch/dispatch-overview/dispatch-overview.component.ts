@@ -42,7 +42,7 @@ export class DispatchOverviewComponent {
   uploadFile(files: File[]): void {
     this.uploadService.uploadFile(files[0], 0,
       '/api/appdispatch/uploadapp').subscribe((res: UploadResult) => {
-      this.showToast(NbToastStatus.SUCCESS, 'Success', 'pload success');
+      this.showToast(NbToastStatus.SUCCESS, 'Success', 'upload success');
       this.loadData();
     });
   }

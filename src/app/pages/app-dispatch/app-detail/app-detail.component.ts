@@ -10,7 +10,6 @@ import {AppdispatchModel} from '../../../@core/models/appdispatch.model';
 import {UploadResult, UploadService} from '../../../@core/services/upload.service';
 import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'ngx-app-detail',
@@ -63,8 +62,21 @@ export class AppDetailComponent implements OnInit {
       }
       window.location.href = downloadurl;
       this.loadData();
+    }, err => {
+      if (err.error.indexOf(109) > 0) {
+        this.showToast(NbToastStatus.DANGER, 'Error', 'Free time is using out');
+      }
+
     });
   }
+
+  onSavePreference(): void {
+    this.appdispatchService.updateDispatch(this.app).subscribe(() => {
+      this.showToast(NbToastStatus.SUCCESS, 'Success', 'Save Success');
+    });
+
+  }
+
 
   preview(appId): void {
     window.open(`#/view/${appId}`, '_blank');
