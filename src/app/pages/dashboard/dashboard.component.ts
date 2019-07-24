@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { map, takeWhile} from 'rxjs/operators' ;
 import {UserService} from '../../@core/services/users.service';
@@ -20,14 +20,16 @@ interface CardSettings {
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent implements OnDestroy {
-
+export class DashboardComponent implements OnInit, OnDestroy {
   private alive = true;
 
   statusCards: CardSettings[] = [];
 
   rows = new Array<User>();
   page = new PageList<User>();
+
+  selectRowUser: User;
+
   constructor(private themeService: NbThemeService,
               private userService: UserService) {
 
@@ -49,6 +51,12 @@ export class DashboardComponent implements OnDestroy {
     this.loadUserListData();
   }
 
+  ngOnInit(): void {
+    this.selectRowUser = new User();
+  }
+
+
+
   buildCards(): Observable<CardSettings[]> {
     return this.userService.getUserCount().pipe(map((count: UserCount) => {
       return [{
@@ -69,6 +77,13 @@ export class DashboardComponent implements OnDestroy {
 
 
   statusChange($event: CardStatusModel) {
+  }
+
+
+  onActive($event): void {
+    if ($event.type === 'click' || $event.type === 'keydown') {
+        this.selectRowUser = $event.row;
+    }
   }
 
   private loadUserListData() {

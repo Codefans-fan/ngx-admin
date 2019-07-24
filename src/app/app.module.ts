@@ -22,6 +22,7 @@ import {TokenInterceptor} from './@core/interceptor/token.interceptor';
 import {AppViewComponent} from './public/app-view/app-view.component';
 import {QRCodeModule} from 'angularx-qrcode';
 import {DeviceDetectorModule} from 'ngx-device-detector';
+
 @NgModule({
   declarations: [AppComponent, AppViewComponent],
   imports: [

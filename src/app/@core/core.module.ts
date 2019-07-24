@@ -14,6 +14,7 @@ import {
 
 import {UserService} from './services/users.service';
 import {AppdispatchService} from './services/appdispatch.service';
+import {DashboardService} from './services/dashboard.service';
 // const socialLinks = [
 //   {
 //     url: 'https://github.com/akveo/nebular',
@@ -97,6 +98,7 @@ export const NB_CORE_PROVIDERS = [
   StateService,
   UserService,
   AppdispatchService,
+  DashboardService,
 ];
 
 @NgModule({

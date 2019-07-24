@@ -25,7 +25,6 @@ import {
   NbInputModule,
   NbAccordionModule,
   NbDatepickerModule,
-  NbDialogModule,
   NbWindowModule,
   NbListModule,
   NbToastrModule,
@@ -97,7 +96,6 @@ const NB_MODULES = [
   NbInputModule,
   NbAccordionModule,
   NbDatepickerModule,
-  NbDialogModule,
   NbWindowModule,
   NbAlertModule,
   NbSpinnerModule,
@@ -148,7 +146,6 @@ const NB_THEME_PROVIDERS = [
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
   ...NbDatepickerModule.forRoot().providers,
-  ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
   ...NbChatModule.forRoot({

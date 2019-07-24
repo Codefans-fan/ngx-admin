@@ -7,9 +7,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppdispatchService} from '../../../@core/services/appdispatch.service';
 import {AppdispatchModel} from '../../../@core/models/appdispatch.model';
-import {UploadResult, UploadService} from '../../../@core/services/upload.service';
+import {UploadService} from '../../../@core/services/upload.service';
 import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {NbToastStatus} from '@nebular/theme/components/toastr/model';
+import {UploadResultModel} from '../../../@core/models/upload-result.model';
 
 @Component({
   selector: 'ngx-app-detail',
@@ -49,8 +50,10 @@ export class AppDetailComponent implements OnInit {
 
   public uploadFile(files: File[]): void {
     this.uploadService.uploadFile(files[0], this.app.id,
-      '/api/appdispatch/newversion').subscribe((res: UploadResult) => {
-      this.showToast(NbToastStatus.SUCCESS, 'Success', 'New version upload success');
+      '/api/appdispatch/newversion').subscribe((res: UploadResultModel) => {
+      if (res.progress === 100  && res.status === 'done' ) {
+        this.showToast(NbToastStatus.SUCCESS, 'Success', 'New version upload success');
+      }
     });
   }
 

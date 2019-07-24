@@ -11,41 +11,42 @@
   </div>
 </div>
 <div class="row">
-   <div class="col-xxxl-12 col-xxl-12 col-lg-12 col-md-12 ">
-     <ngx-datatable class="cosmic"
-     [columnMode]="'flex'"
-     [headerHeight]="40"
-     [footerHeight]="50"
-     [rowHeight]="'auto'"
-     [externalPaging]="true"
-     [count]="page.total"
-     [offset]="page.pageNum"
-     [limit]="page.pageSize"
-     [rows]="rows"
-     (page)='setPage($event)'>
-     <ngx-datatable-column name="ID" prop="id" [flexGrow]="1">
-       <ng-template let-value="value" ngx-datatable-cell-template>
-         {{value}}
-       </ng-template>
-     </ngx-datatable-column>
-     <ngx-datatable-column name="Email" prop="email" [flexGrow]="1">
-       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-         {{value}}
-       </ng-template>
-     </ngx-datatable-column>
-     <ngx-datatable-column name="Mobile" prop="mobile" [flexGrow]="2">
-       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-         {{value}}
-       </ng-template>
-     </ngx-datatable-column>
-     <ngx-datatable-column name="Create Date" prop="createDate" [flexGrow]="1">
-       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-         {{value}}
-       </ng-template>
-     </ngx-datatable-column>
-     </ngx-datatable>
-   </div>
+   <div class="col-xxl-5">
+     <nb-card>
+       <ngx-datatable class="cosmic"
+                      [columnMode]="'flex'"
+                      [headerHeight]="40"
+                      [footerHeight]="50"
+                      [rowHeight]="'auto'"
+                      [externalPaging]="true"
+                      [count]="page.total"
+                      [offset]="page.pageNum"
+                      [limit]="page.pageSize"
+                      [rows]="rows"
+                      (activate)="onActive($event)"
+                      (page)='setPage($event)'>
+         <ngx-datatable-column name="ID" prop="id" [flexGrow]="1">
+           <ng-template let-value="value" ngx-datatable-cell-template>
+             {{value}}
+           </ng-template>
+         </ngx-datatable-column>
+         <ngx-datatable-column name="Email" prop="email" [flexGrow]="1">
+           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+             {{value}}
+           </ng-template>
+         </ngx-datatable-column>
+         <ngx-datatable-column name="Create Date" prop="createDate" [flexGrow]="1">
+           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+             {{value}}
+           </ng-template>
+         </ngx-datatable-column>
+       </ngx-datatable>
+     </nb-card>
 
+   </div>
+   <div class="col-xxl-7">
+     <ngx-user-app-chart [selectUser]="selectRowUser" ></ngx-user-app-chart>
+   </div>
 </div>
 
 

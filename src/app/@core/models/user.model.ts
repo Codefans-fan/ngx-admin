@@ -17,3 +17,12 @@ export class UserCount {
   totalCount?: number;
   todaysRegister?: number;
 }
+
+export class UserSummary {
+  totalDownload?: number;
+  freeTimes?: number;
+  chargeTimes?: number;
+
+  items?: Array<any>;
+
+}

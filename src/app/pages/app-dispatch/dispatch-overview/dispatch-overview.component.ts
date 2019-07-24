@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
 import {AppdispatchService} from '../../../@core/services/appdispatch.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UploadResult, UploadService} from '../../../@core/services/upload.service';
+import {UploadService} from '../../../@core/services/upload.service';
 import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {AppdispatchModel} from '../../../@core/models/appdispatch.model';
 import {WarningDialogComponent} from '../warning-dialog/warning-dialog.component';
+import {UploadResultModel} from '../../../@core/models/upload-result.model';
+import {MatDialog} from '@angular/material';
 @Component({
   selector: 'ngx-dispatch-overview',
   styleUrls: ['./dispatch-overview.component.scss'],
@@ -16,11 +18,9 @@ export class DispatchOverviewComponent {
   rows = [];
 
   appTypes = [];
-
   constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute,
               private uploadService: UploadService, private toastrService: NbToastrService,
-              private dialogService: NbDialogService) {
-
+              private dialog: MatDialog) {
     this.loadData();
   }
 
@@ -38,12 +38,14 @@ export class DispatchOverviewComponent {
       this.rows = res;
     });
   }
-
   uploadFile(files: File[]): void {
+
     this.uploadService.uploadFile(files[0], 0,
-      '/api/appdispatch/uploadapp').subscribe((res: UploadResult) => {
-      this.showToast(NbToastStatus.SUCCESS, 'Success', 'upload success');
-      this.loadData();
+      '/api/appdispatch/uploadapp').subscribe((res: UploadResultModel) => {
+      if (res.progress === 100  && res.status === 'done' ) {
+          this.showToast(NbToastStatus.SUCCESS, 'Success', 'upload success');
+          this.loadData();
+        }
     });
   }
 
@@ -56,7 +58,7 @@ export class DispatchOverviewComponent {
   }
 
   deleteApp(rowData: AppdispatchModel) {
-    this.dialogService.open(WarningDialogComponent).onClose.subscribe((isSure: boolean) => {
+    this.dialog.open(WarningDialogComponent).afterClosed().subscribe((isSure: boolean) => {
       if (isSure) {
         this.appdispatchService.deleteApp(rowData.id).subscribe(() => {
           this.showToast(NbToastStatus.SUCCESS, 'Delete', 'Delete successfully');

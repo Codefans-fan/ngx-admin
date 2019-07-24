@@ -18,7 +18,13 @@ const routes: Routes = [{
   }, {
     path: 'miscellaneous',
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
-  }, {
+  },
+   {
+      path: 'user/:id',
+      canActivate: [AuthGuard],
+      loadChildren: './users/users.module#UsersModule',
+    },
+    {
     path: '',
     redirectTo: 'appdispatch',
     pathMatch: 'full',

@@ -3,7 +3,7 @@
  * create on 2019/7/15
  */
 import { Component } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'ngx-warning-dialog',
@@ -12,7 +12,7 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class WarningDialogComponent {
 
-  constructor(protected ref: NbDialogRef<WarningDialogComponent>) {}
+  constructor(protected ref: MatDialogRef<WarningDialogComponent>) {}
 
   cancel() {
     this.ref.close();
