@@ -2,7 +2,8 @@
  * create by fky
  * create on 2019/7/22
  */
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {User} from '../../../@core/models/user.model';
 
 @Component({
   selector: 'ngx-user-profile',
@@ -11,4 +12,14 @@ import {Component} from '@angular/core';
 })
 
 export class UserProfileComponent {
+
+  @Input() user: User;
+
+  @Output() userOut = new EventEmitter<User>();
+
+
+  saveUser(): void {
+    this.userOut.emit(this.user);
+  }
+
 }

@@ -20,7 +20,7 @@ const routes: Routes = [{
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
   },
    {
-      path: 'user/:id',
+      path: 'user',
       canActivate: [AuthGuard],
       loadChildren: './users/users.module#UsersModule',
     },

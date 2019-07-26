@@ -30,6 +30,20 @@ export class UserService {
     return observableOf(this.user);
   }
 
+  public getUserById(id: number): Observable<User> {
+    return this.httpClient.get(`/api/user/${id}`).pipe((map((res: User) => {
+      return res;
+    })));
+  }
+
+  public updateUser(user: User): Observable<User> {
+    return this.httpClient.put('/api/user/update', user).pipe((map((res: User) => {
+      return res;
+    })));
+
+  }
+
+
   public getUserCount(): Observable<UserCount> {
     return this.httpClient.get('/api/user/count').pipe(map((count: UserCount) => {
       return count;

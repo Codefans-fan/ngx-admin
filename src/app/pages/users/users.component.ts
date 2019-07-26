@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {NbAuthService, NbAuthToken} from '@nebular/auth';
 import {TokenPayloadModel} from '../../@core/models/token_payload.model';
+import {User} from '../../@core/models/user.model';
+import {UserService} from '../../@core/services/users.service';
+import {NotificationService} from '../../@core/services/notification.service';
 
 /**
  * create by fky
@@ -17,21 +19,39 @@ import {TokenPayloadModel} from '../../@core/models/token_payload.model';
 export  class UsersComponent implements OnInit {
 
     id: number = 0;
-    constructor(private route: ActivatedRoute, private router: Router, private auth: NbAuthService) {
+    constructor( private auth: NbAuthService, private userService: UserService, private notificationService: NotificationService) {
     }
 
+    user: User = new User();
+
+    private isEditable: boolean = true;
+
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = Number(params.get('id'));
-      if (this.id > 0) {
         this.auth.getToken().subscribe((token: NbAuthToken) => {
           const payload =  token.getPayload() as TokenPayloadModel;
-           if (payload.id !== this.id) {
-             this.router.navigate(['../../', payload.id], {relativeTo: this.route});
-           }
-        });
-      }
+          this.id = payload.id;
+          this.loadUser(this.id);
     });
   }
+
+  saveUser($event: User): void {
+    if (this.isEditable) {  // avoid multiple send
+      this.isEditable = false;
+      this.userService.updateUser($event).subscribe((res: User) => {
+        this.user = res;
+        this.notificationService.showSuccessMessage('Success', 'Update user');
+        this.isEditable = true;
+      });
+    }
+  }
+
+
+  private loadUser(id: number) {
+    this.userService.getUserById(id).subscribe((resUser: User) => {
+      this.user = resUser;
+    });
+  }
+
+
 
 }

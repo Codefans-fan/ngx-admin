@@ -1,0 +1,45 @@
+:host {
+
+  nb-card-header {
+    margin: auto;
+    max-width: 300px;
+  }
+
+  .user-avatar {
+    margin:  auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0 rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    max-width: 130px;
+    max-height: 130px;
+  }
+  .user-avatar img {
+    width: 100%;
+    height: auto;
+  }
+  .user-avatar:hover img {
+    opacity: 0.5;
+  }
+
+  .user-avatar:hover .avatar_edit {
+    opacity: 1;
+  }
+
+  .avatar_edit {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}

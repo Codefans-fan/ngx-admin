@@ -1,9 +1,42 @@
 <nb-card>
   <nb-card-header>
-    Header
+    <div class="row">
+      <div class="user-avatar col-md-12 col-xs-12 col-centered">
+        <a href="javascript:void(0)">
+          <img class="img" src="assets/images/eva.png" />
+        </a>
+        <div class="avatar_edit">Edit</div>
+      </div>
+    </div>
   </nb-card-header>
   <nb-card-body>
-  body
+    <div class="container-fluid">
+      <div class="form-group row">
+        <label for="inputEmail1" class="label col-sm-2 col-form-label  col-xxl-1 text-right  align-self-center">Email</label>
+        <div class="col-sm-4">
+          <input type="email" nbInput fullWidth id="inputEmail1" placeholder="Email"  value="{{user.email}}" disabled>
+        </div>
+        <label for="inputEmail1" class="label col-sm-2 col-form-label  col-xxl-1 text-right align-self-center">Mobile</label>
+        <div class="col-sm-4">
+          <input type="text" ngxNumberOnly  nbInput fullWidth status="info" id="mobile" placeholder="Mobile"  [(ngModel)]="user.mobile" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail1" class="label col-sm-2 col-form-label  col-xxl-1 text-right  align-self-center">User Name</label>
+        <div class="col-sm-4">
+          <input type="text" nbInput fullWidth id="userName" status="info" placeholder="User name" [(ngModel)]="user.userName">
+        </div>
+        <label for="inputEmail1" class="label col-sm-2 col-form-label  col-xxl-1 text-right  align-self-center">Create Time</label>
+        <div class="col-sm-4">
+          <input type="text" nbInput fullWidth id="createTime" value="{{user.createDate}}"  disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 offset-xxl-1 col-2 ">
+          <button nbButton status="primary" (click)="saveUser()">Save</button>
+        </div>
+      </div>
+    </div>
 
   </nb-card-body>
 </nb-card>
