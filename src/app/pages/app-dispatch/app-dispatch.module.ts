@@ -13,6 +13,7 @@ import {NbDialogModule} from '@nebular/theme';
 import {NgCircleProgressModule} from 'ng-circle-progress';
 import {CircleProgressDialogComponent} from './circle-progress-dialog/circle-progress-dialog.component';
 import {MatDialogModule} from '@angular/material';
+import {ChargeDialogComponent} from './charge-dialog/charge-dialog.component';
 
 const COMPONENTS = [
   AppDispatchComponent,
@@ -20,6 +21,7 @@ const COMPONENTS = [
   AppDetailComponent,
   WarningDialogComponent,
   CircleProgressDialogComponent,
+  ChargeDialogComponent,
 ];
 
 const SERVICES = [
@@ -66,6 +68,7 @@ const MODULES = [
   entryComponents: [
     WarningDialogComponent,
     CircleProgressDialogComponent,
+    ChargeDialogComponent,
   ],
 })
 export class AppDispatchModule { }

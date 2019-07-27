@@ -6,14 +6,13 @@ import {Injectable} from '@angular/core';
 import {AppdispatchModel} from '../models/appdispatch.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
-import {EMPTY, Observable} from 'rxjs';
-import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import { Observable} from 'rxjs';
+import {UserAppModel} from '../models/user-app.model';
 
 @Injectable()
 export class AppdispatchService {
 
-  constructor(private httpClient: HttpClient, private toastrService: NbToastrService) {
+  constructor(private httpClient: HttpClient) {
   }
 
 
@@ -71,20 +70,11 @@ export class AppdispatchService {
     return (matches[1] || 'untitled').trim();
   }
 
-  private showToast(type: NbToastStatus, title: string, body: string) {
-    const config = {
-      status: type,
-      destroyByClick: true,
-      duration: 5000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.TOP_RIGHT,
-      preventDuplicates: false,
-    };
-    const titleContent = title ? `${title}` : '';
-    this.toastrService.show(
-      body,
-      titleContent,
-      config);
+  public getDownLoadData(): Observable<UserAppModel> {
+    return this.httpClient.get('/api/appdispatch/userapp').pipe(map( (res: UserAppModel) => {
+      return res;
+    }));
+
   }
 
 }

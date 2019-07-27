@@ -2,12 +2,13 @@ import {Component} from '@angular/core';
 import {AppdispatchService} from '../../../@core/services/appdispatch.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UploadService} from '../../../@core/services/upload.service';
-import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import { NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {AppdispatchModel} from '../../../@core/models/appdispatch.model';
 import {WarningDialogComponent} from '../warning-dialog/warning-dialog.component';
 import {UploadResultModel} from '../../../@core/models/upload-result.model';
 import {MatDialog} from '@angular/material';
+import {NotificationService} from '../../../@core/services/notification.service';
+import {UserAppModel} from '../../../@core/models/user-app.model';
+import {ChargeDialogComponent} from '../charge-dialog/charge-dialog.component';
 @Component({
   selector: 'ngx-dispatch-overview',
   styleUrls: ['./dispatch-overview.component.scss'],
@@ -18,10 +19,16 @@ export class DispatchOverviewComponent {
   rows = [];
 
   appTypes = [];
+
+  userExt: UserAppModel;
   constructor(private appdispatchService: AppdispatchService, private router: Router, private route: ActivatedRoute,
-              private uploadService: UploadService, private toastrService: NbToastrService,
+              private uploadService: UploadService, private notificationService: NotificationService,
               private dialog: MatDialog) {
     this.loadData();
+
+    this.appdispatchService.getDownLoadData().subscribe((userApp: UserAppModel) => {
+      this.userExt = userApp;
+    });
   }
 
   downlaodSummary(cells: number[]): number {
@@ -43,7 +50,7 @@ export class DispatchOverviewComponent {
     this.uploadService.uploadFile(files[0], 0,
       '/api/appdispatch/uploadapp').subscribe((res: UploadResultModel) => {
       if (res.progress === 100  && res.status === 'done' ) {
-          this.showToast(NbToastStatus.SUCCESS, 'Success', 'upload success');
+          this.notificationService.showSuccessMessage('Success', 'upload success');
           this.loadData();
         }
     });
@@ -61,29 +68,16 @@ export class DispatchOverviewComponent {
     this.dialog.open(WarningDialogComponent).afterClosed().subscribe((isSure: boolean) => {
       if (isSure) {
         this.appdispatchService.deleteApp(rowData.id).subscribe(() => {
-          this.showToast(NbToastStatus.SUCCESS, 'Delete', 'Delete successfully');
+          this.notificationService.showSuccessMessage('Delete', 'Delete successfully');
           this.loadData();
         });
         return;
       }
     });
-
   }
 
-  private showToast(type: NbToastStatus, title: string, body: string) {
-    const config = {
-      status: type,
-      destroyByClick: true,
-      duration: 2000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.TOP_RIGHT,
-      preventDuplicates: false,
-    };
-    const titleContent = title ? `${title}` : '';
-    this.toastrService.show(
-      body,
-      titleContent,
-      config);
+  charge(): void {
+      this.dialog.open(ChargeDialogComponent);
   }
 
 }

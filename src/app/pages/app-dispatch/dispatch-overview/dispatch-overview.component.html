@@ -1,21 +1,41 @@
-<div class="row">
-  <div class="col-md-12">
-    <nb-card>
+<nb-card>
       <nb-card-header>
-        <div class="head-button col-md-12">
-          <button type="button" class="btn btn-primary btn-with-icon" (click)="fileInput.click()" >
-            <i class="fas fa-cloud-upload-alt"></i>
-            <span>New Version</span>
-          </button >
-          <input
-            #fileInput
-            type="file"
-            [multiple]="false"
-            class="upload_input"
-            (change)="uploadFile( fileInput.files ) ; fileInput.value = null;"
-          />
-
-
+        <div class="row">
+          <div class="head-button col-2">
+            <button type="button" class="btn btn-primary btn-with-icon" (click)="fileInput.click()" >
+              <i class="fas fa-cloud-upload-alt"></i>
+              <span>New Version</span>
+            </button >
+            <input
+              #fileInput
+              type="file"
+              [multiple]="false"
+              class="upload_input"
+              (change)="uploadFile( fileInput.files ) ; fileInput.value = null;"
+            />
+          </div>
+          <div class="col-2"></div>
+          <div class="col-3">
+            <div class="row ">
+              Today Free times
+            </div>
+            <div class="row">
+              {{ userExt?.dailyFree }}
+            </div>
+          </div>
+            <div class="col-3 ">
+              <div class="row">
+                Charged times
+              </div>
+              <div class="row">
+                {{ userExt?.chargeTimes }}
+              </div>
+           </div>
+            <div class="col-2 align-items-center" >
+              <div class="row">
+                <button  nbButton [size]="'small'" [status]="'warning'"  (click)="charge()"><i class="fas fa-shopping-cart"></i> </button>
+              </div>
+            </div>
         </div>
       </nb-card-header>
       <nb-card-body>
@@ -68,8 +88,7 @@
           </ngx-datatable>
         </div>
       </nb-card-body>
-    </nb-card>
-  </div>
-</div>
+</nb-card>
+
 
 

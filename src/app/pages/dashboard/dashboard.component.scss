@@ -25,79 +25,66 @@
 }
 :host ::ng-deep {
 
-  .ngx-datatable.cosmic {
+  // fky local theme default
+  .ngx-datatable {
     box-shadow: none;
-    color: #fff;
+    color: #1a2138;
     font-size: 13px;
-
     .datatable-header {
-      color: #72809b;
+      color: #1a2138;
     }
   }
-
-  .ngx-datatable.cosmic .datatable-header .datatable-header-cell {
+  .ngx-datatable .datatable-header .datatable-header-cell {
     text-align: left;
     padding: 0.5rem 1.2rem;
     font-weight: bold;
   }
-
-  .ngx-datatable.cosmic .datatable-header .datatable-header-cell .datatable-header-cell-label {
+  .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {
     line-height: 24px;
   }
-
-  .ngx-datatable.cosmic .datatable-body .datatable-body-row {
+  .ngx-datatable .datatable-body .datatable-body-row {
     border-top: 1px solid #2f3646;
   }
-
-  .ngx-datatable.cosmic .datatable-body .datatable-body-row .datatable-body-cell {
+  .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
     text-align: left;
     padding: 0.5rem 1.2rem;
     vertical-align: top;
   }
-
-  .ngx-datatable.cosmic .datatable-body .datatable-body-row:hover {
-    background: #a1a1e5;
+  .ngx-datatable .datatable-body .datatable-body-row:hover {
+    background: #edf1f7 !important;
     transition-property: background;
     transition-duration: 0.3s;
     transition-timing-function: linear;
   }
-
-  .ngx-datatable.cosmic .datatable-body .datatable-body-row:focus {
+  .ngx-datatable .datatable-body .datatable-body-row:focus {
     background-color: #a1a1e5;
   }
-
-  .ngx-datatable.cosmic .datatable-body .datatable-body-row.active {
+  .ngx-datatable .datatable-body .datatable-body-row.active {
     background-color: #1483ff;
     color: #fff;
   }
-
-  .ngx-datatable.cosmic .datatable-footer {
+  .ngx-datatable .datatable-footer {
     color: #72809b;
     margin-top: -1px;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .page-count {
+  .ngx-datatable .datatable-footer .page-count {
     line-height: 50px;
     height: 50px;
     padding: 0 1.2rem;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager {
+  .ngx-datatable .datatable-footer .datatable-pager {
     margin: 0 10px;
     vertical-align: top;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager ul li {
+  .ngx-datatable .datatable-footer .datatable-pager ul li {
     margin: 10px 0;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager ul li:not(.disabled).active a,
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+  .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+  .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
     background-color: #a1a1e5;
     font-weight: bold;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager a {
+  .ngx-datatable .datatable-footer .datatable-pager a {
     height: 22px;
     min-width: 24px;
     line-height: 22px;
@@ -109,22 +96,18 @@
     text-decoration: none;
     color: #72809b;
   }
-
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager .datatable-icon-left,
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager .datatable-icon-skip,
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager .datatable-icon-right,
-  .ngx-datatable.cosmic .datatable-footer .datatable-pager .datatable-icon-prev {
+  .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-left,
+  .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-skip,
+  .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-right,
+  .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-prev {
     font-size: 18px;
     line-height: 27px;
     padding: 0 3px;
   }
-
-  .ngx-datatable.cosmic .datatable-summary-row .datatable-body-row:hover {
+  .ngx-datatable .datatable-summary-row .datatable-body-row:hover {
     background-color: #a1a1e5;
   }
-
-  .ngx-datatable.cosmic .datatable-summary-row .datatable-body-row .datatable-body-cell {
+  .ngx-datatable .datatable-summary-row .datatable-body-row .datatable-body-cell {
     font-weight: bold;
   }
-
 }
